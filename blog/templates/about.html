@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block sub_header %}
+  <h3>I've taken the long way round.</h3>
+{% endblock %}
+
+{% block content %}
+  <div class = "row text-center">
+    <p>Click to<a class = "text-dark" href = #cv> view </a>my CV. </p>
+  </div>
+
+  <div class="row p-4 mx-4">
+      <img class="about-pics pb-2 blog_pic" id = "comp-girl" src="{{ url_for('static', filename='img/computers.jpg') }}" alt="compsci-pic">
+        <h3>Computer Science</h3><br>
+        <p> The coding course I attended in my final year at university in 2014 was the very definition of a boy’s club. It consisted of mainly STEM undergraduate students who were phenomenally skilled and subsequently whizzed through the assigned tasks. As the only woman on the course, and probably the only humanities student, I made the mistake of writing myself off. If that’s what a programmer looks like, I thought, then I don’t fit the bill. <br> <br> With things having changed so much in the last few months, I have realised that it is not too late for me to follow that early ambition. As part of my <a class = "text-dark" href = "https://www.cardiff.ac.uk/study/postgraduate/taught/courses/course/computing-with-placement-msc" target="_blank"> Msc Computing degree </a> at Cardiff University, in a few months I have already learned python, java, and HTML, CSS and Javascript. I have created this dynamic website that connects to a MySQL database using Bootstrap and Flask. <br> <br> For my dissertation I am interested in researching computer vision, and the potential that has to radically change waste management. If we could use machine learning to reduce the amount of time and effort in recycling materials, I believe we could make a huge contribution to the global energy crisis.
+          </p>
+  </div>
+
+  <div class="row p-4 m-auto" id = "anthropology">
+    <div class = "col col-lg-4 mx-4">
+      <div class = "row">
+        <img class="blog_pic pb-2" src="{{ url_for('static', filename='img/kanji.png') }}" alt="kanji-pic">
+        <h3>Languages</h3><br>
+        <p>I've always been a language nerd and I speak Japanese, Spanish and French. My first degree was in <a class = "text-dark" href = "https://www.ox.ac.uk/admissions/undergraduate/courses-listing/oriental-studies">Oriental Studies (Japanese)</a> and I graduated from Oxford in 2015 having completed a year abroad studying in Kobe University. In 2016 I moved to Peru, and learned Spanish. Now I live in Barcelona and live in perpetual frustration at the accent. In 2015 I took the second-highest proficiency exam for Japanese the N2, and am now studying for the N1. </p>
+      </div>
+    </div>
+  
+    <div class = "col col-lg-4 mx-4">
+      <div class = "row">
+        <img class="pb-2 blog_pic" src="{{ url_for('static', filename='img/tokyo.jpg') }}" alt="anthro-pic">
+        <h3>Anthropology</h3> <br>
+        <p> I received full funding from the <a class = "text-dark" href="https://dajf.org.uk/scholarships/japanese-studies/scholars/daiwa-scholars-in-japanese-studies-2018" target="_blank">Daiwa Anglo Japanese Foundation</a> to do my degree in MA Social Anthropology at SOAS in London. I completed solo ethnographic research on sex work in Tokyo for my dissertation and was awarded a distinction. My research is due to be published in an edited book by my supervisor in 2022.  
+          </p>
+      </div>
+    </div>
+  </div>
+   
+  <div class="row p-4 mx-4">
+    <div class ="col">
+      <h3>Teaching</h3><br>
+      <p>I have 6 years of experience in teaching, including a year spent working in an international school. After my undergraduate degree, I became an education consultant in Hong Kong, giving private lessons to children aged 4-16 following the UK syllabus and delivering professional development workshops to teachers on using games in the classroom. In 2016 I became a full-time teacher in an international school in Peru, during which time I led an IB English B class. <br> <br> Since 2018 I have been working as a tutor specialising in English Language and Literature, Japanese, Oxbridge entrance and academic writing at university level. </p>
+    </div>
+  </div>
+
+  <hr class="mt-2 mb-3">
+
+  <div class = "row text-center" id = "cv">
+    <h3>Curriculum Vitae</h3><br>
+    <img id="cvjpeg" src = "{{ url_for('static', filename='img/cv.jpg') }}" alt="teaching-pic">
+    <h4><a class = "text-dark" href = "{{ url_for('static', filename='img/cv.jpg') }}" download = "Nicola Phillips CV">Download</a></h4>
+  </div>
+
+    <!-- Code for creating a download link from https://www.youtube.com/watch?v=jlDfT57QzP4 
+      accessed 14.03.2021, updated to include bootstrap styling-->
+      
+    </div>
+  </div>
+
+  
+
+
+
+{% endblock content %}

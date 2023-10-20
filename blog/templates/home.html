@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block sub_header %}
+
+
+<div id="intro" class="row pb-5 text-center">
+  <h1 class="mb-3">Nicola Phillips</h1>
+  <p class="mb-3">Educator and Aspiring Software Engineer</p>
+</div>
+
+<div class = "row gx-5 d-flex text-left align-items-center ">
+  <div class="col-sm-12 col-md-6 col-xl-6">
+    <h2 class = "py-2">Hello.</h2>
+    <p> I am a teacher, translator and programmer. <br> <br> I'm a polyglot anthropologist who has recently <br> jumped into the world of computer science.</p>
+  </div>
+  <div class = "col-sm-12 col-md-6 col-xl-6">
+    <div class = "row px-5">
+      <img src="{{ url_for('static', filename='img/profilepic.png') }}" alt = "Nicola pic">
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+<h3 class = "px-4">See what's been on my mind recently... </h3>
+
+<div class = "row gx-5 px-5">
+  {% for post in posts %}
+    <div class = "row justify-content-center text-center">
+      <div class = "col col-md-6 col-xl-6 py-3 my-3">
+        <h3><a class = "text-dark" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3> </br>
+        <p>{{ post.description }}</p>
+        <a href="{{ url_for('post', post_id=post.id) }}"><img src="{{ url_for('static', filename='img/' + post.image_file) }}" class = "blog_pic"></a>
+        <p class = "pt-3">&nbsp by {{ post.user.first_name }} {{ post.user.surname }}</p>
+        <p>Last updated: <span>{{ post.date }}</span></p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class = "row text-center">
+  <h3><a class = "text-dark" href="{{ url_for('all_posts') }}">See all posts</a></h3>
+</div>
+{% endblock content %}

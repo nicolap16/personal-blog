@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block sub_header %}
+  <h3>Enter your details here to create an account.</h3>
+{% endblock %}
+
+{% block content %}
+<form class = "row" method="POST" action="">
+  {{ form.csrf_token }}
+  <div class = "col text-center">
+    <img class="blog_pic pt-5" src="{{ url_for('static', filename='img/contact.jpg') }}" alt="contact us">
+  </div>
+  <div class = "col">
+    <div class = "row py-1">
+      <h3>* Name </h3>
+      <p class = "row">{{ form.first_name.label }}</p>
+      <p class = "row">{{ form.first_name (placeholder="Enter your first name", class_="registerBox") }}</p> 
+      <p class = "row">{{ form.surname.label }} </p>
+      <p class = "row">{{ form.surname (placeholder="Enter your surname", class_="registerBox")}} </p>
+    </div>
+    <div class = "row py-1">
+      <h4>* {{ form.username.label }}</h3> {{ form.username (placeholder="Choose a username", class_="registerBox")}}
+    </div>
+    <div class = "row py-1">
+      {% for error in form.username.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+    </div>
+    <div class = "row py-2">
+      <h4>* {{ form.email.label }}</h4> {{ form.email (placeholder="Enter your email", class_="registerBox")}}
+      {% for error in form.email.errors %} <span style="color: red;">[{{ error }}]</span>{% endfor %}
+    </div>
+    <div class = "row py-1">
+      <h4>* {{ form.password.label }}</h4> {{ form.password (placeholder="Type in a password between 6 and 8 characters in length", class_="registerBox")}}
+    </div>
+    <div class = "row py-1">
+      {% for error in form.password.errors %}
+                <span class = "p-2" style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+      <h4>* {{ form.confirm_password.label }}</h4> {{ form.confirm_password (placeholder="Re-type your password", class_="registerBox")}}
+                {% for error in form.confirm_password.errors %}
+                <span class = "p-2" style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <br>
+      </div>
+  </div>
+  <div class = "row py-4">
+    <input class = "p-4" type="submit" value="Register">
+  </div>
+</form>
+{% endblock content %}

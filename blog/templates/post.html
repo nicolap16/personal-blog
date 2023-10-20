@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+<!-- Post Title  -->
+{% block sub_header %}
+<h1 class = "py-2">{{ post.title }}</h1> 
+<h4 class = "py-2">{{ post.description }}</h4>
+{% endblock %}
+
+<!-- Post Details  -->
+{% block content %}
+<div class = "gx-5 px-5">
+  <div class = "row">
+    <img class = "pb-5 mx-auto blog_pic" src="{{ url_for('static', filename='img/' + post.image_file) }}">
+      <h3>by {{ post.user.first_name }} {{ post.user.surname }}</h3><br>
+      <p>Last updated: <span>{{ post.date }}</span></p>
+    <p>{{ post.content }}</p>
+  </div>
+
+  <hr class="mt-2 mb-3">
+
+<!-- Display Comments  -->
+<div id = "Comment-section">
+  <h4 class = "row py-1">Comments </h4>
+    {% for comment in comments %}
+      <div class = "row py-1">
+        <p class = "row h5">{{ comment.user.username }}</p>
+        <p class = "row">{{ post.date }}</p>
+        <p id = "user-comments" class = "row">"{{ comment.content }}"&nbsp</p>
+      </div>
+    {% endfor %}
+
+    <hr class="mt-2 mb-3">
+
+    <!-- Add Comments  -->
+    
+    {%if current_user.is_authenticated%}
+      <form class = "row" method="POST" action="{{ url_for('post_comment', post_id=post.id) }}">
+          {{ form.hidden_tag() }}
+        <div class="p-auto">
+          {{ form.comment.label }} {{ form.comment }} {% for error in form.comment.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+          {{ form.submit() }}
+        </div>
+      </form>
+    {% else %}
+      <p class = "py-3">To leave a comment, you must <a href = "{{ url_for('register') }}">create an account</a> and <a href = "{{url_for('login')}}">login</a></p>
+    {%endif%}
+  </div>
+
+{% endblock content %}

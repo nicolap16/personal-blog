@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!--Stylesheet from https://getbootstrap.com/docs/5.0/getting-started/download/ 
+    accessed 03.03.2021. Bootstrap used for the navbar and much of the grid styling, passing and margin on the pages. Some styles I overwrote in my CSS file-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- Body font changed using fonts from https://fonts.google.com/
+    accessed 03.03.2021 and used to overwrite the Bootstrap default font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap" rel="stylesheet"> 
+  <!-- My stylesheet -->
+  <link rel=stylesheet type=text/css href="{{ url_for('static',
+  filename='style.css') }}">
+
+    <!-- Icons from https://cdn.fontawesome.com/
+      accessed 03.03.2021 and used in editing the footer. -->
+    <script src="https://kit.fontawesome.com/7c8b1fd03d.js" crossorigin="anonymous"></script>
+
+    <!-- Stylesheet from https://getbootstrap.com/docs/5.0/getting-started/download/
+      accessed 03.03.2021 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <title>Nicola Phillips - Educator and Software Engineer</title>
+</head>
+
+<body>
+  <nav class = "coloured-section" id="header">
+    <!-- Code for creating a responsive navbar in Bootstrap from https://getbootstrap.com/docs/5.0/components/navbar/ 
+      accessed 01.03.2021, update to have passing and to include flask url links and jinja if statement to show different states depending on whether the user is authenticated-->
+    <div class="navbar px-5 navbar-custom navbar-expand-lg navbar-light" id = "navbar">
+      <div class="container-fluid">
+        <div class = "col-md-6 me-auto" id="navbar_left">
+          <ul class="navbar-nav">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Nicola Phillips</a>
+            <a class="nav-link active" aria-current="page" href="{{ url_for('about') }}">About</a>
+            <a class="nav-link" href="{{ url_for('all_posts') }}">All Posts</a>
+          </ul>
+        </div>
+
+        <div id="navbar_right">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              {% if current_user.is_authenticated %}
+              <span class="navbar-text">
+                  Hello, {{ current_user.username }}!
+              </span>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+              {% else %}
+              <span class="navbar-text">
+                Hello, Guest!
+              </span>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('login')}}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+              </li>
+              {% endif %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </nav>
+
+
+    <div class = "text-center h3 bg-light py-2" id="flashes">
+      {% with messages = get_flashed_messages() %}  
+        {% if messages %}
+          <ulclass=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div> 
+
+    <!-- Header  -->
+    <div class="row p-5 text-center" id="sub_header">
+        {% block sub_header %}
+        {% endblock %}
+    </div>
+  
+
+  <!-- Main content  -->
+  <div class = "container-md my-5" id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- Return to the top of page  -->
+  <div class = "text-center py-3">
+    <a class = "text-dark" href=" #top">
+        Top ↑
+    </a>
+  </div>
+  
+
+  <!-- Code for footer from https://mdbootstrap.com/freebies/blog/
+    accessed 10.03.2021, updated the text and links (I don't use facebook or github so the homepages). Added new font awesome button for Linked In and added a "contact me" button using mailto -->
+
+ <!--Footer-->
+ <footer class="bg-light text-lg-start">
+
+  <div class="text-center py-4 align-items-center">
+    <p>Find me on social media.</p>
+
+    <a href="https://www.linkedin.com/in/nicola-phillips-1603" class="btn btn-default m-1" role="button" rel="nofollow"
+      target="_blank">
+      <i class="fab fa-linkedin"></i>
+    </a>
+
+    <a href="https://www.facebook.com" class="btn btn-default m-1" role="button" rel="nofollow"
+      target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    
+    <a href="https://github.com" class="btn btn-default m-1" role="button" rel="nofollow"
+      target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <a role="button" class= "btn btn-default m-1" href="mailto:phillipsna@cardiff.ac.uk">
+      Email Me
+    </a>
+  </div>
+
+  <!-- Code for footer from https://mdbootstrap.com/freebies/blog/
+    accessed 10.03.2021, updated text, inserted bootstrap passing and updated flask link. -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="{{ url_for('about') }}">Nicola Phillips</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+</body>
+</html>

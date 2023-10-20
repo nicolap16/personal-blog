@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block sub_header %}
+  <h3>You can only log in if you have <a class = "text-dark" href="{{ url_for('register') }}">registered</a>. </h3>
+{% endblock %}
+
+{% block content %}
+
+<div class ="row">
+  <form class = "col pt-5" method="POST" action="">
+      {{ form.csrf_token }}
+    <div class = "p-4">
+      {{ form.email.label }} {{ form.email (placeholder="Enter the email you registered with", class_="registerBox")}}
+    </div>
+    <div class = "p-4">
+      {{ form.password.label }} {{ form.password (placeholder="I hope you remember it!", class_="registerBox")}}
+    </div>
+    <div class = "p-4">
+      <input id = "login-btn" type="submit" value="Login">
+    </div>
+  </form>
+  <div class = "col">
+    <div class = "col text-center justify-content-center">
+      <img class="blog_pic pt-5" src="{{ url_for('static', filename='img/login.jpg') }}" alt="login">
+    </div>
+  </div>
+</div>
+{% endblock content %}
