@@ -14,6 +14,7 @@ An interactive personal blog. Use Cardiff VPN to access.
 
 ## Usage
 
+http://test1-c21016073-personal-blog.apps.openshift.cs.cf.ac.uk/home 
 Viewable when using the university VPN
 
 ## License
